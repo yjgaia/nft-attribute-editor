@@ -6,6 +6,8 @@
   "type": "module",
   "types": "./lib/index.d.ts",
   "main": "./lib/index.js",
-  "dependencies": {},
+  "dependencies": {
+    "@gaiaengine/dom": "^0.0.3"
+  },
   "devDependencies": {}
 }
