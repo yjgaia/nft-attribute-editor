@@ -1,1 +1,1 @@
-{"version":3,"file":"NFTDataManager.js","sourceRoot":"","sources":["../src/NFTDataManager.ts"],"names":[],"mappings":"AAEA,MAAM,CAAC,OAAO,OAAO,cAAc;IACjC,YAAY,IAAa;IACzB,CAAC;CACF"}
+{"version":3,"file":"NFTDataManager.js","sourceRoot":"","sources":["../src/NFTDataManager.ts"],"names":[],"mappings":"AAEA,MAAM,CAAC,OAAO,OAAO,cAAc;IACzB,KAAK,CAAU;IAEvB,YAAY,IAAa;QACvB,IAAI,CAAC,KAAK,GAAG,IAAI,CAAC;IACpB,CAAC;IAEM,OAAO;QACZ,OAAO,IAAI,CAAC,KAAK,CAAC;IACpB,CAAC;CACF"}
