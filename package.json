@@ -7,7 +7,7 @@
   "types": "./lib/index.d.ts",
   "main": "./lib/index.js",
   "dependencies": {
-    "@gaiaengine/dom": "^0.0.3"
+    "@gaiaengine/dom": "^0.0.4"
   },
   "devDependencies": {}
 }
