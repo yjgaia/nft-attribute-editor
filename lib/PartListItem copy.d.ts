@@ -3,4 +3,4 @@ import NFTDataManager from "./NFTDataManager.js";
 export default class PartListItem extends DomNode {
     constructor(dataManager: NFTDataManager, value: string);
 }
-//# sourceMappingURL=PartListItem.d.ts.map
+//# sourceMappingURL=PartListItem%20copy.d.ts.map

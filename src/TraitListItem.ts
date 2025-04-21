@@ -1,8 +1,8 @@
 import { DomNode } from "@commonmodule/app";
 import NFTDataManager from "./NFTDataManager.js";
 
-export default class PartListItem extends DomNode {
+export default class TraitListItem extends DomNode {
   constructor(dataManager: NFTDataManager, value: string) {
-    super(".part-list-item");
+    super(".trait-list-item");
   }
 }

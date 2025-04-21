@@ -1,0 +1,1 @@
+{"version":3,"file":"TraitOptionList.js","sourceRoot":"","sources":["../src/TraitOptionList.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,mBAAmB,CAAC;AAG5C,MAAM,CAAC,OAAO,OAAO,QAAS,SAAQ,OAAO;IAC3C,YAAY,WAA2B,EAAE,QAAgB,EAAE,MAAgB;QACzE,KAAK,CAAC,YAAY,CAAC,CAAC;IACtB,CAAC;CACF"}

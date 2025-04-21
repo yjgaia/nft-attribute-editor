@@ -1,1 +1,1 @@
-{"version":3,"file":"TraitListItem.d.ts","sourceRoot":"","sources":["../src/TraitListItem.ts"],"names":[],"mappings":""}
+{"version":3,"file":"TraitListItem.d.ts","sourceRoot":"","sources":["../src/TraitListItem.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,mBAAmB,CAAC;AAC5C,OAAO,cAAc,MAAM,qBAAqB,CAAC;AAEjD,MAAM,CAAC,OAAO,OAAO,aAAc,SAAQ,OAAO;gBACpC,WAAW,EAAE,cAAc,EAAE,KAAK,EAAE,MAAM;CAGvD"}

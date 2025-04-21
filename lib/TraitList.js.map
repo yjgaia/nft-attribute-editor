@@ -1,1 +1,1 @@
-{"version":3,"file":"TraitList.js","sourceRoot":"","sources":["../src/TraitList.ts"],"names":[],"mappings":"AAEA,MAAM,CAAC,OAAO,OAAO,SAAS;IAC5B,YAAY,YAA8C;IAC1D,CAAC;CACF"}
+{"version":3,"file":"TraitList.js","sourceRoot":"","sources":["../src/TraitList.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,mBAAmB,CAAC;AAG5C,MAAM,CAAC,OAAO,OAAO,SAAU,SAAQ,OAAO;IAC5C,YACE,WAA2B,EAC3B,SAAiB,EACjB,MAAgB;QAEhB,KAAK,CAAC,aAAa,CAAC,CAAC;IACvB,CAAC;CACF"}

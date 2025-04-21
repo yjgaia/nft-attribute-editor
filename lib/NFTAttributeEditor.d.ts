@@ -1,6 +1,8 @@
 import { DomNode } from "@commonmodule/app";
+import NFTData from "./NFTData.js";
 import PartOptions from "./PartOptions.js";
 export default class NFTAttributeEditor extends DomNode {
+    private dataManager;
     constructor(options: {
         options: {
             traits?: {
@@ -8,14 +10,8 @@ export default class NFTAttributeEditor extends DomNode {
             };
             parts: PartOptions;
         };
-        data: {
-            traits?: {
-                [traitName: string]: string;
-            };
-            parts: {
-                [partName: string]: string;
-            };
-        };
+        data: NFTData;
     });
+    private createPartList;
 }
 //# sourceMappingURL=NFTAttributeEditor.d.ts.map
