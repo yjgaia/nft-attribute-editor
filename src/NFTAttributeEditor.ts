@@ -1,6 +1,9 @@
 import { DomNode } from "@commonmodule/app";
+import { Accordion, AccordionItem } from "@commonmodule/app-components";
+import { StringUtils } from "@commonmodule/ts";
 import NFTData from "./NFTData.js";
 import NFTDataManager from "./NFTDataManager.js";
+import PartList from "./PartList.js";
 import PartOptions, { PartCategory } from "./PartOptions.js";
 import TraitList from "./TraitList.js";
 
@@ -8,6 +11,9 @@ export default class NFTAttributeEditor extends DomNode {
   private traitOptions: { [traitName: string]: string[] };
   private partOptions: PartOptions;
   private dataManager: NFTDataManager;
+
+  private accordion: Accordion;
+  private partAccordionItems: AccordionItem[] = [];
 
   constructor(options: {
     options: {
@@ -22,17 +28,29 @@ export default class NFTAttributeEditor extends DomNode {
     this.partOptions = options.options.parts;
     this.dataManager = new NFTDataManager(options.data);
 
+    this.accordion = new Accordion().appendTo(this);
+
     for (
       const [traitName, values] of Object.entries(options.options.traits || {})
     ) {
       const traitList = new TraitList(this.dataManager, traitName, values);
-      this.append(traitList);
+      this.accordion.append(
+        new AccordionItem({
+          label: StringUtils.capitalize(traitName),
+          open: true,
+        }, traitList),
+      );
     }
 
     this.createPartList();
   }
 
   private async createPartList() {
+    for (const partAccordionItem of this.partAccordionItems) {
+      partAccordionItem.remove();
+    }
+    this.partAccordionItems = [];
+
     let categories: PartCategory[] = [];
 
     const traitCount = Object.keys(this.traitOptions).length;
@@ -51,6 +69,20 @@ export default class NFTAttributeEditor extends DomNode {
       throw new Error("Unsupported trait count");
     }
 
-    console.log(categories);
+    for (const category of categories) {
+      const partList = new PartList(
+        this.dataManager,
+        category.name,
+        category.parts.map((part) => part.name),
+      );
+
+      const partAccordionItem = new AccordionItem({
+        label: StringUtils.capitalize(category.name),
+        open: true,
+      }, partList);
+      this.partAccordionItems.push(partAccordionItem);
+
+      this.accordion.append(partAccordionItem);
+    }
   }
 }

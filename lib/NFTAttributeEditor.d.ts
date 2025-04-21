@@ -5,6 +5,8 @@ export default class NFTAttributeEditor extends DomNode {
     private traitOptions;
     private partOptions;
     private dataManager;
+    private accordion;
+    private partAccordionItems;
     constructor(options: {
         options: {
             traits?: {
