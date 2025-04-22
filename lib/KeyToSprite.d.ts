@@ -1,5 +1,5 @@
 import FrameInfo from "./FrameInfo.js";
-type KeyToSprite = {
+type KeyToFrame = {
     [key: string]: FrameInfo;
 } | {
     [trait: string]: {
@@ -12,5 +12,5 @@ type KeyToSprite = {
         };
     };
 };
-export default KeyToSprite;
+export default KeyToFrame;
 //# sourceMappingURL=KeyToSprite.d.ts.map

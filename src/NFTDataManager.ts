@@ -1,32 +1,37 @@
-import { SpritesheetData } from "@gaiaengine/dom";
-import KeyToSprite from "./KeyToSprite.js";
+import NFTAttributeEditorOptions from "./NFTAttributeEditorOptions.js";
 import NFTData from "./NFTData.js";
+import { PartCategory } from "./PartOptions.js";
 
 export default class NFTDataManager {
-  constructor(
-    private data: NFTData,
-    private keyToSprite: KeyToSprite,
-    private spritesheet: SpritesheetData,
-    private spritesheetImagePath: string,
-  ) {}
+  constructor(private options: NFTAttributeEditorOptions) {}
 
-  public getDataClone(): NFTData {
-    return JSON.parse(JSON.stringify(this.data));
+  public getData(): NFTData {
+    return this.options.data;
   }
 
-  public getTraitValue(traitName: string): string | undefined {
-    return this.data.traits?.[traitName];
+  public getDataClone(): NFTData {
+    return JSON.parse(JSON.stringify(this.options.data));
+  }
+
+  public getPartCategories(trait1?: string, trait2?: string): PartCategory[] {
+    if (trait1 && trait2) {
+      return (this.options.options.parts as any)[trait1][trait2];
+    } else if (trait1) {
+      return (this.options.options.parts as any)[trait1];
+    } else {
+      return this.options.options.parts as PartCategory[];
+    }
   }
 
   public getKeyToSprite() {
-    return this.keyToSprite;
+    return this.options.keyToFrame;
   }
 
   public getSpritesheet() {
-    return this.spritesheet;
+    return this.options.spritesheet;
   }
 
   public getSpritesheetImagePath() {
-    return this.spritesheetImagePath;
+    return this.options.spritesheetImagePath;
   }
 }
