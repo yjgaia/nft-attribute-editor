@@ -1,5 +1,6 @@
 import { DomNode, el } from "@commonmodule/app";
 import { Checkbox } from "@commonmodule/app-components";
+import { StringUtils } from "@commonmodule/ts";
 import { SpritesheetData } from "@gaiaengine/dom";
 import NFTData from "../data/NFTData.js";
 import { PartCategory } from "../data/PartOptions.js";
@@ -29,7 +30,7 @@ export default class OptionListItem extends DomNode<HTMLDivElement, {
         spritesheet,
         spritesheetImagePath,
       ),
-      el(".value", value),
+      el(".value", StringUtils.capitalize(value)),
       this.checkbox = new Checkbox(),
     );
   }
