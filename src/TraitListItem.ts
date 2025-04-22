@@ -1,12 +1,20 @@
 import { DomNode, el } from "@commonmodule/app";
+import { Checkbox } from "@commonmodule/app-components";
 import NFTDataManager from "./NFTDataManager.js";
 import { PartCategory } from "./PartOptions.js";
 import TraitOrPartPreview from "./TraitOrPartPreview.js";
 
-export default class TraitListItem extends DomNode {
-  private checkIconContainer: DomNode;
+export default class TraitListItem extends DomNode<HTMLAnchorElement, {
+  select: () => void;
+  deselect: () => void;
+}> {
+  private checkbox: Checkbox;
 
-  constructor(dataManager: NFTDataManager, traitName: string, value: string) {
+  constructor(
+    dataManager: NFTDataManager,
+    traitName: string,
+    private value: string,
+  ) {
     super("a.trait-list-item");
 
     const dataClone = dataManager.getDataClone();
@@ -39,7 +47,19 @@ export default class TraitListItem extends DomNode {
     this.append(
       new TraitOrPartPreview(dataManager, dataClone),
       el(".value", value),
-      this.checkIconContainer = el(".check-icon-container"),
+      this.checkbox = new Checkbox(),
     );
+  }
+
+  public getValue() {
+    return this.value;
+  }
+
+  public select() {
+    this.checkbox.checked = true;
+  }
+
+  public deselect() {
+    this.checkbox.checked = false;
   }
 }

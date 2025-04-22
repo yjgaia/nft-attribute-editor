@@ -2,12 +2,15 @@ import { DomNode } from "@commonmodule/app";
 import { Accordion, AccordionItem } from "@commonmodule/app-components";
 import { StringUtils } from "@commonmodule/ts";
 import NFTAttributeEditorOptions from "./NFTAttributeEditorOptions.js";
+import NFTData from "./NFTData.js";
 import NFTDataManager from "./NFTDataManager.js";
 import PartList from "./PartList.js";
 import PartOptions, { PartCategory } from "./PartOptions.js";
 import TraitList from "./TraitList.js";
 
-export default class NFTAttributeEditor extends DomNode {
+export default class NFTAttributeEditor extends DomNode<HTMLDivElement, {
+  dataChanged: (data: NFTData) => void;
+}> {
   private traitOptions: { [traitName: string]: string[] };
   private partOptions: PartOptions;
   private dataManager: NFTDataManager;
@@ -28,6 +31,12 @@ export default class NFTAttributeEditor extends DomNode {
       const [traitName, values] of Object.entries(options.options.traits || {})
     ) {
       const traitList = new TraitList(this.dataManager, traitName, values);
+
+      traitList.on("select", (selectedTrait) => {
+        this.dataManager.getData().traits![traitName] = selectedTrait;
+        this.emit("dataChanged", this.dataManager.getData());
+      });
+
       this.accordion.append(
         new AccordionItem({
           label: StringUtils.capitalize(traitName),
@@ -69,6 +78,11 @@ export default class NFTAttributeEditor extends DomNode {
         category.name,
         category.parts.map((part) => part.name),
       );
+
+      partList.on("select", (selectedPart) => {
+        this.dataManager.getData().parts[category.name] = selectedPart;
+        this.emit("dataChanged", this.dataManager.getData());
+      });
 
       const partAccordionItem = new AccordionItem({
         label: StringUtils.capitalize(category.name),

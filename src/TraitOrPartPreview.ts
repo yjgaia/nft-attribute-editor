@@ -63,7 +63,17 @@ export default class TraitOrPartPreview extends DomNode {
       }
     }
 
-    //this.on("visible", () => this.updateGameScreenSize());
-    //this.onWindow("resize", () => this.updateGameScreenSize());
+    this.on("visible", () => this.updateGameScreenSize());
+    this.onWindow("resize", () => this.updateGameScreenSize());
+  }
+
+  private updateGameScreenSize() {
+    const rect = this.calculateRect();
+
+    const widthRatio = rect.width / 128;
+    const heightRatio = rect.width / 128;
+    const ratio = Math.min(widthRatio, heightRatio);
+
+    this.gameScreen.resize(128, 128, ratio);
   }
 }

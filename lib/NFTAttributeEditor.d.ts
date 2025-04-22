@@ -1,6 +1,9 @@
 import { DomNode } from "@commonmodule/app";
 import NFTAttributeEditorOptions from "./NFTAttributeEditorOptions.js";
-export default class NFTAttributeEditor extends DomNode {
+import NFTData from "./NFTData.js";
+export default class NFTAttributeEditor extends DomNode<HTMLDivElement, {
+    dataChanged: (data: NFTData) => void;
+}> {
     private traitOptions;
     private partOptions;
     private dataManager;
