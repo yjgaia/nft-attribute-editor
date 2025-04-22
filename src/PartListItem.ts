@@ -3,6 +3,6 @@ import NFTDataManager from "./NFTDataManager.js";
 
 export default class PartListItem extends DomNode {
   constructor(dataManager: NFTDataManager, value: string) {
-    super(".part-list-item");
+    super("a.part-list-item");
   }
 }
