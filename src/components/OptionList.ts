@@ -1,0 +1,24 @@
+import { DomNode } from "@commonmodule/app";
+import NFTData from "../data/NFTData.js";
+import OptionListItem from "./OptionListItem.js";
+
+export default class OptionList extends DomNode<HTMLDivElement, {
+  select: (selectedData: NFTData) => void;
+}> {
+  public children: OptionListItem[] = [];
+  public selectedItem?: OptionListItem;
+
+  constructor() {
+    super(".option-list");
+  }
+
+  public addItem(item: OptionListItem) {
+    this.append(item);
+    item.onDom("click", () => {
+      this.selectedItem?.deselect();
+      this.selectedItem = item;
+      item.select();
+      this.emit("select", item.getData());
+    });
+  }
+}

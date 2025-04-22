@@ -1,3 +1,2 @@
-export { default as NFTAttributeEditor } from "./NFTAttributeEditor.js";
-export { PartCategory, PartItem } from "./PartOptions.js";
+export { default as NFTAttributeEditor } from "./components/NFTAttributeEditor.js";
 //# sourceMappingURL=index.d.ts.map
