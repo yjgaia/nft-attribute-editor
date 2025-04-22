@@ -4,7 +4,7 @@ export interface ImageInfo {
 }
 
 interface PartCondition {
-  trait: string;
+  part: string;
   values: string[];
 }
 

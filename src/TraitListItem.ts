@@ -12,14 +12,10 @@ export default class TraitListItem extends DomNode {
     const dataClone = dataManager.getDataClone();
     dataClone.traits![traitName] = value;
 
-    const traitCount = dataClone.traits
-      ? Object.keys(dataClone.traits).length
-      : 0;
+    const traitCount = Object.keys(dataClone.traits!).length;
     let categories: PartCategory[];
 
-    if (traitCount === 0) {
-      categories = dataManager.getPartCategories();
-    } else if (traitCount === 1) {
+    if (traitCount === 1) {
       const traitName = Object.keys(dataClone.traits!)[0];
       const trait = dataClone.traits![traitName];
       categories = dataManager.getPartCategories(trait);

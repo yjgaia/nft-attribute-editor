@@ -7,7 +7,7 @@ export default class PartList extends DomNode {
     super(".part-list");
 
     for (const value of values) {
-      const partListItem = new PartListItem(dataManager, value);
+      const partListItem = new PartListItem(dataManager, partName, value);
       partListItem.appendTo(this);
     }
   }

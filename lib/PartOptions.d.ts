@@ -3,7 +3,7 @@ export interface ImageInfo {
     zIndex: number;
 }
 interface PartCondition {
-    trait: string;
+    part: string;
     values: string[];
 }
 export interface PartItem {

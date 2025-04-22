@@ -39,6 +39,15 @@ export default class TraitOrPartPreview extends DomNode {
       if (category) {
         const part = category.parts.find((p) => p.name === partValue);
         if (part?.images) {
+          if (part.condition) {
+            const condition = part.condition;
+            const conditionValue = data.traits?.[condition.part] ||
+              data.parts[condition.part];
+            if (!conditionValue || !condition.values.includes(conditionValue)) {
+              continue;
+            }
+          }
+
           for (const image of part.images) {
             const frame = frames[image.path];
             const sprite = new Sprite(
