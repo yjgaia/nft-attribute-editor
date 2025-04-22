@@ -23,6 +23,8 @@ export default class OptionPreview extends DomNode {
         if (part?.images) {
           for (const image of part.images) {
             const frame = keyToFrame[image.path];
+            if (!frame) continue;
+
             const sprite = new Sprite(
               0,
               0,

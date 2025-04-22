@@ -12,6 +12,7 @@ export default class NFTAttributeEditor extends DomNode<HTMLDivElement, {
   dataChanged: (data: NFTData) => void;
 }> {
   private baseData: NFTData;
+  private savedScrollTop = 0;
 
   private accordion: Accordion;
   private traitAccordionItems: AccordionItem[] = [];
@@ -32,8 +33,18 @@ export default class NFTAttributeEditor extends DomNode<HTMLDivElement, {
     this.baseData = this.options.baseData;
     this.accordion = new Accordion().appendTo(this);
 
+    this.saveScrollTop();
     this.createTraitOptionLists();
     this.createPartOptionLists();
+    this.restoreScrollTop();
+  }
+
+  private saveScrollTop() {
+    this.savedScrollTop = this.htmlElement.scrollTop;
+  }
+
+  private restoreScrollTop() {
+    this.htmlElement.scrollTop = this.savedScrollTop;
   }
 
   private cloneData(): NFTData {
@@ -109,8 +120,10 @@ export default class NFTAttributeEditor extends DomNode<HTMLDivElement, {
       const traitOptionList = new OptionList();
       traitOptionList.on("select", (selectedData) => {
         this.baseData = selectedData;
+        this.saveScrollTop();
         this.createTraitOptionLists();
         this.createPartOptionLists();
+        this.restoreScrollTop();
         this.emit("dataChanged", this.baseData);
       });
 
@@ -166,7 +179,9 @@ export default class NFTAttributeEditor extends DomNode<HTMLDivElement, {
       const partOptionList = new OptionList();
       partOptionList.on("select", (selectedData) => {
         this.baseData = selectedData;
+        this.saveScrollTop();
         this.createPartOptionLists();
+        this.restoreScrollTop();
         this.emit("dataChanged", this.baseData);
       });
 

@@ -8,6 +8,7 @@ export default class NFTAttributeEditor extends DomNode<HTMLDivElement, {
 }> {
     private options;
     private baseData;
+    private savedScrollTop;
     private accordion;
     private traitAccordionItems;
     private partAccordionItems;
@@ -21,6 +22,8 @@ export default class NFTAttributeEditor extends DomNode<HTMLDivElement, {
         spritesheet: SpritesheetData;
         spritesheetImagePath: string;
     });
+    private saveScrollTop;
+    private restoreScrollTop;
     private cloneData;
     private getPartCategoriesAndFrames;
     private cleanData;
