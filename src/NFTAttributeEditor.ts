@@ -1,6 +1,8 @@
 import { DomNode } from "@commonmodule/app";
 import { Accordion, AccordionItem } from "@commonmodule/app-components";
 import { StringUtils } from "@commonmodule/ts";
+import { SpritesheetData } from "@gaiaengine/dom";
+import KeyToSprite from "./KeyToSprite.js";
 import NFTData from "./NFTData.js";
 import NFTDataManager from "./NFTDataManager.js";
 import PartList from "./PartList.js";
@@ -21,12 +23,20 @@ export default class NFTAttributeEditor extends DomNode {
       parts: PartOptions;
     };
     data: NFTData;
+    keyToSprite: KeyToSprite;
+    spritesheet: SpritesheetData;
+    spritesheetImagePath: string;
   }) {
     super(".nft-attribute-editor");
 
     this.traitOptions = options.options.traits || {};
     this.partOptions = options.options.parts;
-    this.dataManager = new NFTDataManager(options.data);
+    this.dataManager = new NFTDataManager(
+      options.data,
+      options.keyToSprite,
+      options.spritesheet,
+      options.spritesheetImagePath,
+    );
 
     this.accordion = new Accordion().appendTo(this);
 
@@ -58,12 +68,12 @@ export default class NFTAttributeEditor extends DomNode {
       categories = this.partOptions as PartCategory[];
     } else if (traitCount === 1) {
       const traitName = Object.keys(this.traitOptions)[0];
-      const traitValue = this.dataManager.getData().traits![traitName];
+      const traitValue = this.dataManager.getTraitValue(traitName)!;
       categories = (this.partOptions as any)[traitValue];
     } else if (traitCount === 2) {
       const traitNames = Object.keys(this.traitOptions);
-      const traitValue1 = this.dataManager.getData().traits![traitNames[0]];
-      const traitValue2 = this.dataManager.getData().traits![traitNames[1]];
+      const traitValue1 = this.dataManager.getTraitValue(traitNames[0])!;
+      const traitValue2 = this.dataManager.getTraitValue(traitNames[1])!;
       categories = (this.partOptions as any)[traitValue1][traitValue2];
     } else {
       throw new Error("Unsupported trait count");

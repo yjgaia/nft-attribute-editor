@@ -1,4 +1,6 @@
 import { DomNode } from "@commonmodule/app";
+import { SpritesheetData } from "@gaiaengine/dom";
+import KeyToSprite from "./KeyToSprite.js";
 import NFTData from "./NFTData.js";
 import PartOptions from "./PartOptions.js";
 export default class NFTAttributeEditor extends DomNode {
@@ -15,6 +17,9 @@ export default class NFTAttributeEditor extends DomNode {
             parts: PartOptions;
         };
         data: NFTData;
+        keyToSprite: KeyToSprite;
+        spritesheet: SpritesheetData;
+        spritesheetImagePath: string;
     });
     private createPartList;
 }

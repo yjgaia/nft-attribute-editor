@@ -1,6 +1,4 @@
-type NFTData = {
+export default interface NFTData {
   traits?: { [traitName: string]: string };
   parts: { [partName: string]: string };
-};
-
-export default NFTData;
+}

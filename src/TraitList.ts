@@ -11,7 +11,7 @@ export default class TraitList extends DomNode {
     super(".trait-list");
 
     for (const value of values) {
-      const traitListItem = new TraitListItem(dataManager, value);
+      const traitListItem = new TraitListItem(dataManager, traitName, value);
       traitListItem.appendTo(this);
     }
   }
