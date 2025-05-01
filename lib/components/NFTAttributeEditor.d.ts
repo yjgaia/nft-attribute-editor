@@ -1,7 +1,7 @@
 import { DomNode } from "@commonmodule/app";
 import { SpritesheetData } from "@gaiaengine/dom";
+import { NFTData } from "nft-data";
 import KeyToFrame from "../data/KeyToFrame.js";
-import NFTData from "../data/NFTData.js";
 import PartOptions from "../data/PartOptions.js";
 export default class NFTAttributeEditor extends DomNode<HTMLDivElement, {
     dataChanged: (data: NFTData) => void;

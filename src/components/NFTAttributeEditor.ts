@@ -2,8 +2,8 @@ import { DomNode } from "@commonmodule/app";
 import { Accordion, AccordionItem } from "@commonmodule/app-components";
 import { StringUtils } from "@commonmodule/ts";
 import { SpritesheetData } from "@gaiaengine/dom";
+import { NFTData } from "nft-data";
 import KeyToFrame from "../data/KeyToFrame.js";
-import NFTData from "../data/NFTData.js";
 import PartOptions, { PartCategory } from "../data/PartOptions.js";
 import { default as OptionList } from "./OptionList.js";
 import OptionListItem from "./OptionListItem.js";
@@ -57,7 +57,7 @@ export default class NFTAttributeEditor extends DomNode<HTMLDivElement, {
   }
 
   private getPartCategoriesAndFrames(
-    traits?: { [traitName: string]: string },
+    traits?: { [traitName: string]: string | number },
   ): {
     categories: PartCategory[];
     keyToFrame: { [key: string]: string };

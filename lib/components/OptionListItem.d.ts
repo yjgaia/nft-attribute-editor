@@ -1,6 +1,6 @@
 import { DomNode } from "@commonmodule/app";
 import { SpritesheetData } from "@gaiaengine/dom";
-import NFTData from "../data/NFTData.js";
+import { NFTData } from "nft-data";
 import { PartCategory } from "../data/PartOptions.js";
 export default class OptionListItem extends DomNode<HTMLDivElement, {
     select: () => void;

@@ -2,7 +2,7 @@ import { DomNode, el } from "@commonmodule/app";
 import { Checkbox } from "@commonmodule/app-components";
 import { StringUtils } from "@commonmodule/ts";
 import { SpritesheetData } from "@gaiaengine/dom";
-import NFTData from "../data/NFTData.js";
+import { NFTData } from "nft-data";
 import { PartCategory } from "../data/PartOptions.js";
 import OptionPreview from "./OptionPreview.js";
 

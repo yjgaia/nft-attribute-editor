@@ -5,7 +5,7 @@ export interface ImageInfo {
 
 interface PartCondition {
   part: string;
-  values: string[];
+  values: (string | number)[];
 }
 
 export interface PartItem {

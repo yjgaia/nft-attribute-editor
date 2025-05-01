@@ -1,5 +1,5 @@
 import { DomNode } from "@commonmodule/app";
-import NFTData from "../data/NFTData.js";
+import { NFTData } from "nft-data";
 import OptionListItem from "./OptionListItem.js";
 
 export default class OptionList extends DomNode<HTMLDivElement, {
