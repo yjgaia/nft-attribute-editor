@@ -32,7 +32,7 @@ export default class OptionPreview extends DomNode {
               spritesheet,
               frame,
             ).appendTo(this.gameScreen.root);
-            sprite.zIndex = image.zIndex;
+            sprite.drawingOrder = image.drawingOrder;
           }
         }
       }

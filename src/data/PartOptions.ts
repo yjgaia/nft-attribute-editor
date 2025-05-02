@@ -1,6 +1,6 @@
 export interface ImageInfo {
   path: string;
-  zIndex: number;
+  drawingOrder: number;
 }
 
 interface PartCondition {
