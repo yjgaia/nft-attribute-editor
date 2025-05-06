@@ -8,29 +8,29 @@ import PartOptions, { PartCategory } from "../data/PartOptions.js";
 import { default as OptionList } from "./OptionList.js";
 import OptionListItem from "./OptionListItem.js";
 
+export interface NFTAttributeEditorOptions {
+  traitOptions?: { [traitName: string]: string[] };
+  partOptions: PartOptions;
+  baseData: NFTData;
+  keyToFrame: KeyToFrame;
+  spritesheet: SpritesheetData;
+  spritesheetImagePath: string;
+}
+
 export default class NFTAttributeEditor extends DomNode<HTMLDivElement, {
   dataChanged: (data: NFTData) => void;
 }> {
-  private baseData: NFTData;
+  private data: NFTData;
   private savedScrollTop = 0;
 
   private accordion: Accordion;
   private traitAccordionItems: AccordionItem[] = [];
   private partAccordionItems: AccordionItem[] = [];
 
-  constructor(
-    private options: {
-      traitOptions?: { [traitName: string]: string[] };
-      partOptions: PartOptions;
-      baseData: NFTData;
-      keyToFrame: KeyToFrame;
-      spritesheet: SpritesheetData;
-      spritesheetImagePath: string;
-    },
-  ) {
+  constructor(private options: NFTAttributeEditorOptions) {
     super(".nft-attribute-editor");
 
-    this.baseData = this.options.baseData;
+    this.data = this.options.baseData;
     this.accordion = new Accordion().appendTo(this);
 
     this.saveScrollTop();
@@ -48,12 +48,12 @@ export default class NFTAttributeEditor extends DomNode<HTMLDivElement, {
   }
 
   private cloneData(): NFTData {
-    return this.baseData.traits
+    return this.data.traits
       ? {
-        traits: { ...this.baseData.traits },
-        parts: { ...this.baseData.parts },
+        traits: { ...this.data.traits },
+        parts: { ...this.data.parts },
       }
-      : { parts: { ...this.baseData.parts } };
+      : { parts: { ...this.data.parts } };
   }
 
   private getPartCategoriesAndFrames(
@@ -119,12 +119,12 @@ export default class NFTAttributeEditor extends DomNode<HTMLDivElement, {
     ) {
       const traitOptionList = new OptionList();
       traitOptionList.on("select", (selectedData) => {
-        this.baseData = selectedData;
+        this.data = selectedData;
         this.saveScrollTop();
         this.createTraitOptionLists();
         this.createPartOptionLists();
         this.restoreScrollTop();
-        this.emit("dataChanged", this.baseData);
+        this.emit("dataChanged", this.data);
       });
 
       this.traitAccordionItems.push(new AccordionItem({
@@ -158,7 +158,7 @@ export default class NFTAttributeEditor extends DomNode<HTMLDivElement, {
         );
         traitOptionList.addItem(item);
 
-        if (this.baseData.traits?.[traitName] === value) {
+        if (this.data.traits?.[traitName] === value) {
           item.select();
           traitOptionList.selectedItem = item;
         }
@@ -173,16 +173,16 @@ export default class NFTAttributeEditor extends DomNode<HTMLDivElement, {
     this.partAccordionItems = [];
 
     const { categories, keyToFrame } = this.getPartCategoriesAndFrames(
-      this.baseData.traits,
+      this.data.traits,
     );
     for (const category of categories) {
       const partOptionList = new OptionList();
       partOptionList.on("select", (selectedData) => {
-        this.baseData = selectedData;
+        this.data = selectedData;
         this.saveScrollTop();
         this.createPartOptionLists();
         this.restoreScrollTop();
-        this.emit("dataChanged", this.baseData);
+        this.emit("dataChanged", this.data);
       });
 
       this.partAccordionItems.push(new AccordionItem({
@@ -193,7 +193,7 @@ export default class NFTAttributeEditor extends DomNode<HTMLDivElement, {
       for (const part of category.parts) {
         if (part.condition) {
           const condition = part.condition;
-          const conditionValue = this.baseData.parts[condition.part];
+          const conditionValue = this.data.parts[condition.part];
           if (!conditionValue || !condition.values.includes(conditionValue)) {
             continue;
           }
@@ -213,11 +213,15 @@ export default class NFTAttributeEditor extends DomNode<HTMLDivElement, {
         );
         partOptionList.addItem(item);
 
-        if (this.baseData.parts[category.name] === part.name) {
+        if (this.data.parts[category.name] === part.name) {
           item.select();
           partOptionList.selectedItem = item;
         }
       }
     }
+  }
+
+  public getData(): NFTData {
+    return this.data;
   }
 }

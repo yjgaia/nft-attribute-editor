@@ -1,1 +1,4 @@
-export { default as NFTAttributeEditor } from "./components/NFTAttributeEditor.js";
+export {
+  default as NFTAttributeEditor,
+  NFTAttributeEditorOptions,
+} from "./components/NFTAttributeEditor.js";
