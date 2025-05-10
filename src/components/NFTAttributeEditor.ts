@@ -1,4 +1,4 @@
-import { DomNode } from "@commonmodule/app";
+import { Dom } from "@commonmodule/app";
 import { Accordion, AccordionItem } from "@commonmodule/app-components";
 import { StringUtils } from "@commonmodule/ts";
 import { SpritesheetData } from "@gaiaengine/dom";
@@ -17,7 +17,7 @@ export interface NFTAttributeEditorOptions {
   spritesheetImagePath: string;
 }
 
-export default class NFTAttributeEditor extends DomNode<HTMLDivElement, {
+export default class NFTAttributeEditor extends Dom<HTMLDivElement, {
   dataChanged: (data: NFTData) => void;
 }> {
   private data: NFTData;

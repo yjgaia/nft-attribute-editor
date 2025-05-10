@@ -1,9 +1,9 @@
-import { DomNode } from "@commonmodule/app";
+import { AppRoot, Dom } from "@commonmodule/app";
 import { GameScreen, Sprite, SpritesheetData } from "@gaiaengine/dom";
 import { NFTData } from "nft-data";
 import { PartCategory } from "../data/PartOptions.js";
 
-export default class OptionPreview extends DomNode {
+export default class OptionPreview extends Dom {
   private gameScreen: GameScreen;
 
   constructor(
@@ -39,7 +39,7 @@ export default class OptionPreview extends DomNode {
     }
 
     this.on("visible", () => this.updateGameScreenSize());
-    this.onWindow("resize", () => this.updateGameScreenSize());
+    AppRoot.bind(this, "resize", () => this.updateGameScreenSize());
   }
 
   private updateGameScreenSize() {

@@ -1,7 +1,7 @@
-import { DomNode } from "@commonmodule/app";
+import { Dom } from "@commonmodule/app";
 import { NFTData } from "nft-data";
 import OptionListItem from "./OptionListItem.js";
-export default class OptionList extends DomNode<HTMLDivElement, {
+export default class OptionList extends Dom<HTMLDivElement, {
     select: (selectedData: NFTData) => void;
 }> {
     children: OptionListItem[];
