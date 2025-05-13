@@ -3,7 +3,7 @@ import { NFTData } from "nft-data";
 import OptionListItem from "./OptionListItem.js";
 
 export default class OptionList extends Dom<HTMLDivElement, {
-  select: (selectedData: NFTData) => void;
+  optionSelected: (selectedData: NFTData) => void;
 }> {
   public children: OptionListItem[] = [];
   public selectedItem?: OptionListItem;
@@ -18,7 +18,7 @@ export default class OptionList extends Dom<HTMLDivElement, {
       this.selectedItem?.deselect();
       this.selectedItem = item;
       item.select();
-      this.emit("select", item.getData());
+      this.emit("optionSelected", item.getData());
     });
   }
 }

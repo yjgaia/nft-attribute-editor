@@ -118,7 +118,7 @@ export default class NFTAttributeEditor extends Dom<HTMLDivElement, {
       const [traitName, values] of Object.entries(this.options.traitOptions)
     ) {
       const traitOptionList = new OptionList();
-      traitOptionList.on("select", (selectedData) => {
+      traitOptionList.on("optionSelected", (selectedData) => {
         this.data = selectedData;
         this.saveScrollTop();
         this.createTraitOptionLists();
@@ -177,7 +177,7 @@ export default class NFTAttributeEditor extends Dom<HTMLDivElement, {
     );
     for (const category of categories) {
       const partOptionList = new OptionList();
-      partOptionList.on("select", (selectedData) => {
+      partOptionList.on("optionSelected", (selectedData) => {
         this.data = selectedData;
         this.saveScrollTop();
         this.createPartOptionLists();
